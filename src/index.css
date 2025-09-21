@@ -1,0 +1,14 @@
+@import "tailwindcss";
+:root {
+        --primary-50: #f0fdf6;
+        --primary-100: #dcfceb;
+        --primary-200: #bbf7d6;
+        --primary-300: #86efb7;
+        --primary-400: #4ade8f;
+        --primary-500: #22c56a;
+        --primary-600: #16a356;
+        --primary-700: #158046;
+        --primary-800: #16653b;
+        --primary-900: #145332;
+        --primary-950: #052e1a;
+      }
