@@ -162,7 +162,7 @@ export const destination = [
     amenities: ["Exhibits", "Cafe"],
     vibe: "Quiet & Peaceful",
     image_source:
-      "https://museums.or.ke/wp-content/uploads/2024/01/DSC_0440-768x514.jpg",
+      "https://www.ugandasafaristours.com/wp-content/uploads/2020/03/nairobi-national-museum-1.jpg",
   },
   {
     id: 14,
