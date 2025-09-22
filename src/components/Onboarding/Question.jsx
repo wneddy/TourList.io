@@ -7,17 +7,15 @@ export default function Question({
   onAnswer,
 }) {
   return (
-    <main className="bg-[#111111] h-screen flex flex-1 items-center justify-center px-4 py-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-lg ">
-        <div className="flex flex-col items-center text-center w-full px-4">
+    <main className="mx-auto bg-[#111111] min-h-screen flex flex-1 items-center justify-center px-4 py-6 sm:px-6 lg:px-8">
+      <div className="w-full max-w-2xl">
+        <div className="flex flex-col items-center text-center w-full">
           {/* Progress info */}
-          <div className="w-full mb-2 flex justify-between">
-            <p className="text-sm font-medium text-white/50">
+          <div className="w-full mb-3 flex justify-between text-xs sm:text-sm">
+            <p className="font-medium text-white/50">
               Question {currentIndex + 1} of {total}
             </p>
-            <p className="text-sm font-bold text-white">
-              {Math.round(progress)}%
-            </p>
+            <p className="font-bold text-white">{Math.round(progress)}%</p>
           </div>
           <div className="h-2 w-full rounded-full bg-white/10 overflow-hidden">
             <div
@@ -27,28 +25,28 @@ export default function Question({
           </div>
 
           {/* Question */}
-          <h2 className="mt-5 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          <h2 className="mt-6 text-2xl sm:text-3xl font-bold tracking-tight text-white">
             {question.question}
           </h2>
-          <p className="mt-3 text-lg text-white/60">
+          <p className="mt-3 text-sm sm:text-lg text-white/60 px-2">
             {question.id === 6
               ? "Select all amenities that matter to you."
               : "Select one option that best describes you."}
           </p>
 
           {/* Options */}
-          <form className="mt-5">
+          <form className="mt-6 w-full">
             <fieldset>
               <legend className="sr-only">{question.question}</legend>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 {question.options.map((option, idx) => (
                   <label
                     key={idx}
-                    className="relative flex cursor-pointer rounded-full border-2 border-white/20 bg-white/5 p-4 text-center transition-all has-[:checked]:border-[var(--primary-400)] has-[:checked]:bg-[var(--primary-950)] has-[:checked]:text-[var(--primary-300)] hover:bg-white/10"
+                    className="relative flex cursor-pointer rounded-lg border-2 border-white/20 bg-white/5 px-4 py-3 text-center text-sm sm:text-base font-semibold text-white transition-all has-[:checked]:border-[var(--primary-400)] has-[:checked]:bg-[var(--primary-950)] has-[:checked]:text-[var(--primary-300)] hover:bg-white/10"
                   >
                     <input
                       className="sr-only"
-                      type={question.id === 6 ? "checkbox" : "radio"} // ✅ checkbox for Q6
+                      type={question.id === 6 ? "checkbox" : "radio"}
                       name={`question_${question.id}`}
                       value={option}
                       checked={
@@ -58,9 +56,7 @@ export default function Question({
                       }
                       onChange={() => onAnswer(question.id, option)}
                     />
-                    <span className="flex-1 text-base font-semibold text-white">
-                      {option}
-                    </span>
+                    <span className="flex-1">{option}</span>
                   </label>
                 ))}
               </div>

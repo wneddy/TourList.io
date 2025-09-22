@@ -15,24 +15,11 @@ export default function Onboarding() {
     setAnswers((prev) => {
       if (questionId === 6) {
         const existing = prev[questionId] || [];
-
-        if (existing.includes(selectedOption)) {
-          return {
-            ...prev,
-            [questionId]: existing.filter((opt) => opt !== selectedOption),
-          };
-        } else {
-          return {
-            ...prev,
-            [questionId]: [...existing, selectedOption],
-          };
-        }
+        return existing.includes(selectedOption)
+          ? { ...prev, [questionId]: existing.filter((opt) => opt !== selectedOption) }
+          : { ...prev, [questionId]: [...existing, selectedOption] };
       }
-
-      return {
-        ...prev,
-        [questionId]: selectedOption,
-      };
+      return { ...prev, [questionId]: selectedOption };
     });
   }
 
@@ -40,8 +27,7 @@ export default function Onboarding() {
     if (currentIndex < questions.length - 1) {
       setCurrentIndex((prev) => prev + 1);
     } else {
-      console.log("Final answers:", answers); 
-      navigate("/feed", {state: { answers } });
+      navigate("/feed", { state: { answers } });
     }
   }
 
@@ -53,13 +39,11 @@ export default function Onboarding() {
 
   const currentAnswer = answers[questions[currentIndex]?.id];
   const disableNext =
-    !currentAnswer ||
-    (Array.isArray(currentAnswer) && currentAnswer.length === 0);
+    !currentAnswer || (Array.isArray(currentAnswer) && currentAnswer.length === 0);
 
   return (
     <>
       <Navbar />
-
       {currentIndex < questions.length ? (
         <>
           <Question
@@ -71,28 +55,28 @@ export default function Onboarding() {
             onAnswer={handleAnswer}
           />
 
-          <div className="absolute bottom-20 w-full flex justify-center gap-4">
+          {/* Responsive buttons */}
+          <div className="fixed bottom-6 left-0 right-0 flex justify-center gap-4 px-4">
             {currentIndex > 0 && (
               <button
                 onClick={handleBack}
-                className="min-w-[84px] max-w-[200px] cursor-pointer bg-gray-500 text-white h-10 px-5 font-bold rounded-full hover:bg-gray-600 transition-colors"
+                className="flex-1 max-w-[140px] sm:max-w-[200px] h-10 px-4 bg-gray-500 text-white font-bold rounded-full hover:bg-gray-600 transition-colors text-sm sm:text-base"
               >
                 Back
               </button>
             )}
-
             <button
               onClick={handleNext}
               disabled={disableNext}
-              className="min-w-[84px] max-w-[200px] cursor-pointer bg-[#38e07b] text-[#111714] h-10 px-5 font-bold rounded-full hover:bg-[#2fe074] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex-1 max-w-[140px] sm:max-w-[200px] h-10 px-4 bg-[#38e07b] text-[#111714] font-bold rounded-full hover:bg-[#2fe074] transition-colors text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {currentIndex === questions.length - 1 ? "Finish" : "Next"}
             </button>
           </div>
         </>
       ) : (
-        <h1 className="text-center text-3xl font-bold text-white mt-20">
-            Thank you! Redirecting to Feed...
+        <h1 className="text-center text-2xl sm:text-3xl font-bold text-white mt-20 px-4">
+          Thank you! Redirecting to Feed...
         </h1>
       )}
     </>

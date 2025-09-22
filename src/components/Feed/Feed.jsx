@@ -14,20 +14,22 @@ export default function Feed() {
   const [results, setResults] = useState([]);
   const [activeCategory, setActiveCategory] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [favorites, setFavorites] = useState([]); // <-- wishlist state
+  const [favorites, setFavorites] = useState([]);
 
   const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
 
   // ✅ Toggle favorites
   function toggleFavorite(placeId) {
     setFavorites((prev) =>
-      prev.includes(placeId) ? prev.filter((id) => id !== placeId) : [...prev, placeId]
+      prev.includes(placeId)
+        ? prev.filter((id) => id !== placeId)
+        : [...prev, placeId]
     );
   }
 
-  // ✅ Handle explore
+  // ✅ Handle explore navigation
   function handleExplore(place) {
-    navigate(`/place/${place.id}`, { state: { place } });
+    navigate(`/explore/${place.id}`, { state: { place } });
   }
 
   useEffect(() => {
@@ -91,8 +93,10 @@ export default function Feed() {
     <>
       <Navbar />
       {loading ? (
-        <div className="flex bg-[#111111] justify-center items-center h-screen text-white text-xl">
-          Fetching your recommendations...
+        <div className="flex bg-[#111111] justify-center items-center h-screen text-white px-4">
+          <p className="text-lg sm:text-xl text-center leading-relaxed">
+            Fetching your recommendations...
+          </p>
         </div>
       ) : (
         <MainFeed
