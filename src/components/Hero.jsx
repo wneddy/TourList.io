@@ -5,7 +5,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative flex items-center justify-center h-screen bg-cover bg-center bg-no-repeat px-4 sm:px-6"
+      className="relative flex items-center justify-center h-screen bg-cover bg-center bg-no-repeat px-4 sm:px-6 mt-10"
       style={{
         backgroundImage: `
         linear-gradient(rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.7) 100%),
