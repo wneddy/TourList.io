@@ -18,7 +18,7 @@ export default function Feed() {
 
   const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
 
-  // ✅ Toggle favorites
+  // Toggle favorites
   function toggleFavorite(placeId) {
     setFavorites((prev) =>
       prev.includes(placeId)
@@ -27,7 +27,7 @@ export default function Feed() {
     );
   }
 
-  // ✅ Handle explore navigation
+  // Handle explore navigation
   function handleExplore(place) {
     navigate(`/explore/${place.id}`, { state: { place } });
   }
